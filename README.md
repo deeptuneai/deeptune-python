@@ -16,17 +16,124 @@ pip install deeptune
 Instantiate and use the client with the following:
 
 ```python
-from deeptune.client import DeeptuneApi
+from deeptune import play
+from deeptune.client import Deeptune
 
-client = DeeptuneApi(
+client = Deeptune(
     api_key="YOUR_API_KEY",
 )
-client.text_to_speech.generate(
-    text="string",
-    voice="string",
-    language_code="string",
-    seed=1,
+
+audio = client.text_to_speech.generate(
+    text="Wow, Deeptune's text to speech API is amazing!",
+    voice="d770a0d0-d7b0-4e52-962f-1a41d252a5f6",
 )
+play(audio)
+```
+
+## Using Prompt Audio
+
+If you prefer to manage voices on your own, you can use your own audio file as a reference for the voice clone.
+
+### Using a URL prompt
+
+```python
+from deeptune import play
+from deeptune.client import Deeptune
+
+client = Deeptune(
+    api_key="YOUR_API_KEY",
+)
+
+audio = client.text_to_speech.generate_from_prompt(
+    text="Wow, Deeptune's text to speech API is amazing!",
+    prompt_audio="https://deeptune-demo.s3.amazonaws.com/Michael.wav",
+)
+play(audio)
+```
+
+### Using a file prompt
+
+```python
+import base64
+from deeptune import play
+from deeptune.client import Deeptune
+
+client = Deeptune(
+    api_key="YOUR_API_KEY",
+)
+
+# Open the file and read its contents as bytes
+with open("Michael.wav", "rb") as audio_file:
+    audio_bytes = audio_file.read()
+
+# Encode the bytes to base64
+audio_base64 = base64.b64encode(audio_bytes).decode("utf-8")
+audio = client.text_to_speech.generate_from_prompt(
+    text="Wow, Deeptune's text to speech API is amazing!",
+    prompt_audio=f"data:audio/wav;base64,{audio_base64}",
+)
+play(audio)
+```
+
+## Voices
+
+You can also store and manage voices inside of Deeptune.
+
+```python
+# Get all available voices
+voices = client.voices.list()
+print(voices)
+
+# Get a specific voices
+voice = client.voices.get(voice_id="d770a0d0-d7b0-4e52-962f-1a41d252a5f6")
+print(voice)
+
+# Create a new cloned voice
+voice = client.voices.create(name="Cool Name", file=url_to_file(url))
+print(voice)
+
+# Update an existing voice
+voice = client.voices.update(
+    voice.id,
+    name="Updated Name",
+    file=,
+)
+
+# Delete an existing voice
+client.voices.delete(voice.id)
+```
+
+## Saving the output
+
+### Saving manually
+
+The `generate` and `generate_from_prompt` endpoints return an iterator of bytes. Make sure to get all of the bytes before writing as demonstrated below.
+
+```python
+audio = client.text_to_speech.generate(
+    text="Wow, Deeptune's text to speech API is amazing!",
+    voice="d770a0d0-d7b0-4e52-962f-1a41d252a5f6",
+)
+audio_bytes = b"".join(audio)
+
+# Now, you can save however you'd like
+with open("output.mp3", "wb") as audio_file:
+    audio_file.write(audio_bytes)
+```
+
+### Using built in utils
+
+The also has inbuilt `play`, `save`, and `stream` utility methods. Under the hood, these methods use ffmpeg and mpv to play audio streams.
+
+```python
+from deeptune import play, save, stream
+
+# plays audio using ffmpeg
+play(audio)
+# streams audio using mpv
+stream(audio)
+# saves audio to file
+save(audio, "my-file.mp3")
 ```
 
 ## Async Client
@@ -34,16 +141,14 @@ client.text_to_speech.generate(
 The SDK also exports an `async` client so that you can make non-blocking calls to our API.
 
 ```python
-from deeptune.client import AsyncDeeptuneApi
+from deeptune.client import AsyncDeeptune
 
-client = AsyncDeeptuneApi(
+client = AsyncDeeptune(
     api_key="YOUR_API_KEY",
 )
-await client.text_to_speech.generate(
+await client.text_to_speech.generate_from_prompt(
     text="string",
     voice="string",
-    language_code="string",
-    seed=1,
 )
 ```
 
