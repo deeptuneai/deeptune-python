@@ -3,7 +3,11 @@
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://github.com/fern-api/fern)
 [![pypi](https://img.shields.io/pypi/v/deeptune)](https://pypi.python.org/pypi/deeptune)
 
-The Deeptune Python library provides convenient access to the Deeptune API from Python.
+The official Python API for Deeptune. Deeptune brings the most human-like voice generation and cloning technology to your project in only a few lines of code.
+
+## 📖 API & Docs
+
+Check out [our documentation](https://docs.deeptune.com).
 
 ## Installation
 
@@ -89,14 +93,17 @@ voice = client.voices.get(voice_id="d770a0d0-d7b0-4e52-962f-1a41d252a5f6")
 print(voice)
 
 # Create a new cloned voice
-voice = client.voices.create(name="Cool Name", file=url_to_file(url))
+voice = client.voices.create(
+    name="Cool Name",
+    file=open("./Michael.wav", "rb")
+)
 print(voice)
 
 # Update an existing voice
 voice = client.voices.update(
-    voice.id,
+    voice_id=voice.id,
     name="Updated Name",
-    file=,
+    file=open("./Michael.wav", "rb"),
 )
 print(voice)
 
