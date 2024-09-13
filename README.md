@@ -3,7 +3,7 @@
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://github.com/fern-api/fern)
 [![pypi](https://img.shields.io/pypi/v/deeptune)](https://pypi.python.org/pypi/deeptune)
 
-The official Python API for Deeptune. Deeptune brings the most human-like voice generation and cloning technology to your project in only a few lines of code.
+The official Python API for Deeptune. Deeptune brings the most human-like text-to-speech and voice cloning technology to your project in only a few lines of code.
 
 ## 📖 API & Docs
 
