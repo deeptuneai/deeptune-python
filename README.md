@@ -17,9 +17,9 @@ Instantiate and use the client with the following:
 
 ```python
 from deeptune import play
-from deeptune.client import DeeptuneApi
+from deeptune.client import Deeptune
 
-client = DeeptuneApi(
+client = Deeptune(
     api_key="YOUR_API_KEY",
 )
 
@@ -38,9 +38,9 @@ If you prefer to manage voices on your own, you can use your own audio file as a
 
 ```python
 from deeptune import play
-from deeptune.client import DeeptuneApi
+from deeptune.client import Deeptune
 
-client = DeeptuneApi(
+client = Deeptune(
     api_key="YOUR_API_KEY",
 )
 
@@ -56,9 +56,9 @@ play(audio)
 ```python
 import base64
 from deeptune import play
-from deeptune.client import DeeptuneApi
+from deeptune.client import Deeptune
 
-client = DeeptuneApi(
+client = Deeptune(
     api_key="YOUR_API_KEY",
 )
 
@@ -73,6 +73,34 @@ audio = client.text_to_speech.generate_from_prompt(
     prompt_audio=f"data:audio/wav;base64,{audio_base64}",
 )
 play(audio)
+```
+
+## Voices
+
+You can also store and manage voices inside of Deeptune.
+
+```python
+# Get all available voices
+voices = client.voices.list()
+print(voices)
+
+# Get a specific voices
+voice = client.voices.get(voice_id="d770a0d0-d7b0-4e52-962f-1a41d252a5f6")
+print(voice)
+
+# Create a new cloned voice
+voice = client.voices.create(name="Cool Name", file=url_to_file(url))
+print(voice)
+
+# Update an existing voice
+voice = client.voices.update(
+    voice.id,
+    name="Updated Name",
+    file=,
+)
+
+# Delete an existing voice
+client.voices.delete(voice.id)
 ```
 
 ## Saving the output
@@ -108,42 +136,14 @@ stream(audio)
 save(audio, "my-file.mp3")
 ```
 
-## Voices
-
-You can also store and manage voices inside of Deeptune.
-
-```python
-# Get all available voices
-voices = client.voices.list()
-print(voices)
-
-# Get a specific voices
-voice = client.voices.get(voice_id="d770a0d0-d7b0-4e52-962f-1a41d252a5f6")
-print(voice)
-
-# Create a new cloned voice
-voice = client.voices.create(name="Cool Name", file=url_to_file(url))
-print(voice)
-
-# Update an existing voice
-voice = client.voices.update(
-    voice.id,
-    name="Updated Name",
-    file=,
-)
-
-# Delete an existing voice
-client.voices.delete(voice.id)
-```
-
 ## Async Client
 
 The SDK also exports an `async` client so that you can make non-blocking calls to our API.
 
 ```python
-from deeptune.client import AsyncDeeptuneApi
+from deeptune.client import AsyncDeeptune
 
-client = AsyncDeeptuneApi(
+client = AsyncDeeptune(
     api_key="YOUR_API_KEY",
 )
 await client.text_to_speech.generate_from_prompt(
