@@ -98,6 +98,7 @@ voice = client.voices.update(
     name="Updated Name",
     file=,
 )
+print(voice)
 
 # Delete an existing voice
 client.voices.delete(voice.id)
@@ -141,15 +142,18 @@ save(audio, "my-file.mp3")
 The SDK also exports an `async` client so that you can make non-blocking calls to our API.
 
 ```python
+from deeptune import play
 from deeptune.client import AsyncDeeptune
 
 client = AsyncDeeptune(
     api_key="YOUR_API_KEY",
 )
-await client.text_to_speech.generate_from_prompt(
+
+audio = await client.text_to_speech.generate_from_prompt(
     text="string",
     voice="string",
 )
+play(audio)
 ```
 
 ## Contributing
