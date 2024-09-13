@@ -20,8 +20,8 @@ pip install deeptune
 Instantiate and use the client with the following:
 
 ```python
-from deeptune import play
 from deeptune.client import Deeptune
+from deeptune.utils import play
 
 client = Deeptune(
     api_key="YOUR_API_KEY",
@@ -41,8 +41,8 @@ If you prefer to manage voices on your own, you can use your own audio file as a
 ### Using a URL prompt
 
 ```python
-from deeptune import play
 from deeptune.client import Deeptune
+from deeptune.utils import play
 
 client = Deeptune(
     api_key="YOUR_API_KEY",
@@ -59,8 +59,8 @@ play(audio)
 
 ```python
 import base64
-from deeptune import play
 from deeptune.client import Deeptune
+from deeptune.utils import play
 
 client = Deeptune(
     api_key="YOUR_API_KEY",
@@ -134,7 +134,7 @@ with open("output.mp3", "wb") as audio_file:
 The also has inbuilt `play`, `save`, and `stream` utility methods. Under the hood, these methods use ffmpeg and mpv to play audio streams.
 
 ```python
-from deeptune import play, save, stream
+from deeptune.utils import play, save, stream
 
 # plays audio using ffmpeg
 play(audio)
@@ -149,8 +149,8 @@ save(audio, "my-file.mp3")
 The SDK also exports an `async` client so that you can make non-blocking calls to our API.
 
 ```python
-from deeptune import play
-from deeptune.client import AsyncDeeptune
+from deeptune.client import Deeptune
+from deeptune.utils import play
 
 client = AsyncDeeptune(
     api_key="YOUR_API_KEY",
