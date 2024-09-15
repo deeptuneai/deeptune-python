@@ -10,12 +10,12 @@ from .types import (
     Voice,
 )
 from . import text_to_speech, voices
-from .environment import DeeptuneApiEnvironment
+from .environment import DeeptuneEnvironment
 from .version import __version__
 
 __all__ = [
     "CreateVoiceResponse",
-    "DeeptuneApiEnvironment",
+    "DeeptuneEnvironment",
     "GetVoiceByIdResponse",
     "ListVoicesResponse",
     "TextToSpeechFromPromptResponse",

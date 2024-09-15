@@ -7,12 +7,12 @@ import httpx
 
 from .core.api_error import ApiError
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
-from .environment import DeeptuneApiEnvironment
+from .environment import DeeptuneEnvironment
 from .text_to_speech.client import AsyncTextToSpeechClient, TextToSpeechClient
 from .voices.client import AsyncVoicesClient, VoicesClient
 
 
-class DeeptuneApi:
+class Deeptune:
     """
     Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 
@@ -21,12 +21,12 @@ class DeeptuneApi:
     base_url : typing.Optional[str]
         The base url to use for requests from the client.
 
-    environment : DeeptuneApiEnvironment
-        The environment to use for requests from the client. from .environment import DeeptuneApiEnvironment
+    environment : DeeptuneEnvironment
+        The environment to use for requests from the client. from .environment import DeeptuneEnvironment
 
 
 
-        Defaults to DeeptuneApiEnvironment.DEFAULT
+        Defaults to DeeptuneEnvironment.DEFAULT
 
 
 
@@ -42,9 +42,9 @@ class DeeptuneApi:
 
     Examples
     --------
-    from deeptune.client import DeeptuneApi
+    from deeptune.client import Deeptune
 
-    client = DeeptuneApi(
+    client = Deeptune(
         api_key="YOUR_API_KEY",
     )
     """
@@ -53,7 +53,7 @@ class DeeptuneApi:
         self,
         *,
         base_url: typing.Optional[str] = None,
-        environment: DeeptuneApiEnvironment = DeeptuneApiEnvironment.DEFAULT,
+        environment: DeeptuneEnvironment = DeeptuneEnvironment.DEFAULT,
         api_key: typing.Optional[str] = os.getenv("DEEPTUNE_API_KEY"),
         timeout: typing.Optional[float] = None,
         follow_redirects: typing.Optional[bool] = True,
@@ -78,7 +78,7 @@ class DeeptuneApi:
         self.voices = VoicesClient(client_wrapper=self._client_wrapper)
 
 
-class AsyncDeeptuneApi:
+class AsyncDeeptune:
     """
     Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 
@@ -87,12 +87,12 @@ class AsyncDeeptuneApi:
     base_url : typing.Optional[str]
         The base url to use for requests from the client.
 
-    environment : DeeptuneApiEnvironment
-        The environment to use for requests from the client. from .environment import DeeptuneApiEnvironment
+    environment : DeeptuneEnvironment
+        The environment to use for requests from the client. from .environment import DeeptuneEnvironment
 
 
 
-        Defaults to DeeptuneApiEnvironment.DEFAULT
+        Defaults to DeeptuneEnvironment.DEFAULT
 
 
 
@@ -108,9 +108,9 @@ class AsyncDeeptuneApi:
 
     Examples
     --------
-    from deeptune.client import AsyncDeeptuneApi
+    from deeptune.client import AsyncDeeptune
 
-    client = AsyncDeeptuneApi(
+    client = AsyncDeeptune(
         api_key="YOUR_API_KEY",
     )
     """
@@ -119,7 +119,7 @@ class AsyncDeeptuneApi:
         self,
         *,
         base_url: typing.Optional[str] = None,
-        environment: DeeptuneApiEnvironment = DeeptuneApiEnvironment.DEFAULT,
+        environment: DeeptuneEnvironment = DeeptuneEnvironment.DEFAULT,
         api_key: typing.Optional[str] = os.getenv("DEEPTUNE_API_KEY"),
         timeout: typing.Optional[float] = None,
         follow_redirects: typing.Optional[bool] = True,
@@ -144,7 +144,7 @@ class AsyncDeeptuneApi:
         self.voices = AsyncVoicesClient(client_wrapper=self._client_wrapper)
 
 
-def _get_base_url(*, base_url: typing.Optional[str] = None, environment: DeeptuneApiEnvironment) -> str:
+def _get_base_url(*, base_url: typing.Optional[str] = None, environment: DeeptuneEnvironment) -> str:
     if base_url is not None:
         return base_url
     elif environment is not None:

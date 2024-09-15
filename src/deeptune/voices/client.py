@@ -38,9 +38,9 @@ class VoicesClient:
 
         Examples
         --------
-        from deeptune.client import DeeptuneApi
+        from deeptune.client import Deeptune
 
-        client = DeeptuneApi(
+        client = Deeptune(
             api_key="YOUR_API_KEY",
         )
         client.voices.list()
@@ -88,9 +88,9 @@ class VoicesClient:
 
         Examples
         --------
-        from deeptune.client import DeeptuneApi
+        from deeptune.client import Deeptune
 
-        client = DeeptuneApi(
+        client = Deeptune(
             api_key="YOUR_API_KEY",
         )
         client.voices.create(
@@ -132,9 +132,9 @@ class VoicesClient:
 
         Examples
         --------
-        from deeptune.client import DeeptuneApi
+        from deeptune.client import Deeptune
 
-        client = DeeptuneApi(
+        client = Deeptune(
             api_key="YOUR_API_KEY",
         )
         client.voices.get(
@@ -188,9 +188,9 @@ class VoicesClient:
 
         Examples
         --------
-        from deeptune.client import DeeptuneApi
+        from deeptune.client import Deeptune
 
-        client = DeeptuneApi(
+        client = Deeptune(
             api_key="YOUR_API_KEY",
         )
         client.voices.update(
@@ -231,9 +231,9 @@ class VoicesClient:
 
         Examples
         --------
-        from deeptune.client import DeeptuneApi
+        from deeptune.client import Deeptune
 
-        client = DeeptuneApi(
+        client = Deeptune(
             api_key="YOUR_API_KEY",
         )
         client.voices.delete(
@@ -272,9 +272,9 @@ class AsyncVoicesClient:
 
         Examples
         --------
-        from deeptune.client import AsyncDeeptuneApi
+        from deeptune.client import AsyncDeeptune
 
-        client = AsyncDeeptuneApi(
+        client = AsyncDeeptune(
             api_key="YOUR_API_KEY",
         )
         await client.voices.list()
@@ -322,9 +322,9 @@ class AsyncVoicesClient:
 
         Examples
         --------
-        from deeptune.client import AsyncDeeptuneApi
+        from deeptune.client import AsyncDeeptune
 
-        client = AsyncDeeptuneApi(
+        client = AsyncDeeptune(
             api_key="YOUR_API_KEY",
         )
         await client.voices.create(
@@ -368,9 +368,9 @@ class AsyncVoicesClient:
 
         Examples
         --------
-        from deeptune.client import AsyncDeeptuneApi
+        from deeptune.client import AsyncDeeptune
 
-        client = AsyncDeeptuneApi(
+        client = AsyncDeeptune(
             api_key="YOUR_API_KEY",
         )
         await client.voices.get(
@@ -424,9 +424,9 @@ class AsyncVoicesClient:
 
         Examples
         --------
-        from deeptune.client import AsyncDeeptuneApi
+        from deeptune.client import AsyncDeeptune
 
-        client = AsyncDeeptuneApi(
+        client = AsyncDeeptune(
             api_key="YOUR_API_KEY",
         )
         await client.voices.update(
@@ -467,9 +467,9 @@ class AsyncVoicesClient:
 
         Examples
         --------
-        from deeptune.client import AsyncDeeptuneApi
+        from deeptune.client import AsyncDeeptune
 
-        client = AsyncDeeptuneApi(
+        client = AsyncDeeptune(
             api_key="YOUR_API_KEY",
         )
         await client.voices.delete(

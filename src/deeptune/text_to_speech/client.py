@@ -25,7 +25,7 @@ class TextToSpeechClient:
         request_options: typing.Optional[RequestOptions] = None
     ) -> typing.Iterator[bytes]:
         """
-        API that converts text into lifelike speech with best-in-class latency & uses the most advanced AI audio model ever. Create voiceovers for your videos, audiobooks, or create AI chatbots for free.
+        The official Python API for Deeptune. Deeptune brings the most human-like text to speech and voice cloning technology to your project in only a few lines of code.
 
         Parameters
         ----------
@@ -51,9 +51,9 @@ class TextToSpeechClient:
 
         Examples
         --------
-        from deeptune.client import DeeptuneApi
+        from deeptune.client import Deeptune
 
-        client = DeeptuneApi(
+        client = Deeptune(
             api_key="YOUR_API_KEY",
         )
         client.text_to_speech.generate(
@@ -91,7 +91,7 @@ class TextToSpeechClient:
         request_options: typing.Optional[RequestOptions] = None
     ) -> typing.Iterator[bytes]:
         """
-        If you prefer to manage voices on your own, you can use your own audio file as a reference for the voice clone.x
+        If you prefer to manage voices on your own, you can use your own audio file as a reference for the voice clone.
 
         Parameters
         ----------
@@ -120,9 +120,9 @@ class TextToSpeechClient:
 
         Examples
         --------
-        from deeptune.client import DeeptuneApi
+        from deeptune.client import Deeptune
 
-        client = DeeptuneApi(
+        client = Deeptune(
             api_key="YOUR_API_KEY",
         )
         client.text_to_speech.generate_from_prompt(
@@ -165,7 +165,7 @@ class AsyncTextToSpeechClient:
         request_options: typing.Optional[RequestOptions] = None
     ) -> typing.AsyncIterator[bytes]:
         """
-        API that converts text into lifelike speech with best-in-class latency & uses the most advanced AI audio model ever. Create voiceovers for your videos, audiobooks, or create AI chatbots for free.
+        The official Python API for Deeptune. Deeptune brings the most human-like text to speech and voice cloning technology to your project in only a few lines of code.
 
         Parameters
         ----------
@@ -191,9 +191,9 @@ class AsyncTextToSpeechClient:
 
         Examples
         --------
-        from deeptune.client import AsyncDeeptuneApi
+        from deeptune.client import AsyncDeeptune
 
-        client = AsyncDeeptuneApi(
+        client = AsyncDeeptune(
             api_key="YOUR_API_KEY",
         )
         await client.text_to_speech.generate(
@@ -231,7 +231,7 @@ class AsyncTextToSpeechClient:
         request_options: typing.Optional[RequestOptions] = None
     ) -> typing.AsyncIterator[bytes]:
         """
-        If you prefer to manage voices on your own, you can use your own audio file as a reference for the voice clone.x
+        If you prefer to manage voices on your own, you can use your own audio file as a reference for the voice clone.
 
         Parameters
         ----------
@@ -260,9 +260,9 @@ class AsyncTextToSpeechClient:
 
         Examples
         --------
-        from deeptune.client import AsyncDeeptuneApi
+        from deeptune.client import AsyncDeeptune
 
-        client = AsyncDeeptuneApi(
+        client = AsyncDeeptune(
             api_key="YOUR_API_KEY",
         )
         await client.text_to_speech.generate_from_prompt(

@@ -3,5 +3,5 @@
 import enum
 
 
-class DeeptuneApiEnvironment(enum.Enum):
+class DeeptuneEnvironment(enum.Enum):
     DEFAULT = "https://api.deeptune.com"
