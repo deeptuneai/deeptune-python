@@ -22,6 +22,7 @@ class TextToSpeechClient:
         voice: str,
         language_code: typing.Optional[str] = OMIT,
         seed: typing.Optional[int] = OMIT,
+        output_format: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None
     ) -> typing.Iterator[bytes]:
         """
@@ -40,6 +41,20 @@ class TextToSpeechClient:
 
         seed : typing.Optional[int]
             Assuming all other properties didn't change, a fixed seed should always generate the exact same audio file.
+
+        output_format : typing.Optional[str]
+            Output audio format. Must be one of the following:
+            * `mp3_44100_192` - MP3 with 44.1kHz sample rate at 192kbps
+            * `mp3_44100_128` - MP3 with 44.1kHz sample rate at 128kbps
+            * `mp3_44100_96` - MP3 with 44.1kHz sample rate at 96kbps
+            * `mp3_44100_64` - MP3 with 44.1kHz sample rate at 64kbps
+            * `mp3_44100_32` - MP3 with 44.1kHz sample rate at 32kbps
+            * `mp3_22050_32` - MP3 with 22.05kHz sample rate at 32kbps
+            * `wav_44100` - WAV with 44.1kHz sample rate
+            * `wav_24000` - WAV with 24kHz sample rate
+            * `wav_22050` - WAV with 22.05kHz sample rate
+            * `wav_16000` - WAV with 16kHz sample rate
+
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -61,12 +76,19 @@ class TextToSpeechClient:
             voice="string",
             language_code="string",
             seed=1,
+            output_format="string",
         )
         """
         with self._client_wrapper.httpx_client.stream(
             "v1/text-to-speech",
             method="POST",
-            json={"text": text, "voice": voice, "language_code": language_code, "seed": seed},
+            json={
+                "text": text,
+                "voice": voice,
+                "language_code": language_code,
+                "seed": seed,
+                "output_format": output_format,
+            },
             request_options=request_options,
             omit=OMIT,
         ) as _response:
@@ -88,6 +110,7 @@ class TextToSpeechClient:
         prompt_audio: str,
         language_code: typing.Optional[str] = OMIT,
         seed: typing.Optional[int] = OMIT,
+        output_format: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None
     ) -> typing.Iterator[bytes]:
         """
@@ -110,6 +133,20 @@ class TextToSpeechClient:
         seed : typing.Optional[int]
             Assuming all other properties didn't change, a fixed seed should always generate the exact same audio file.
 
+        output_format : typing.Optional[str]
+            Output audio format. Must be one of the following:
+            * `mp3_44100_192` - MP3 with 44.1kHz sample rate at 192kbps
+            * `mp3_44100_128` - MP3 with 44.1kHz sample rate at 128kbps
+            * `mp3_44100_96` - MP3 with 44.1kHz sample rate at 96kbps
+            * `mp3_44100_64` - MP3 with 44.1kHz sample rate at 64kbps
+            * `mp3_44100_32` - MP3 with 44.1kHz sample rate at 32kbps
+            * `mp3_22050_32` - MP3 with 22.05kHz sample rate at 32kbps
+            * `wav_44100` - WAV with 44.1kHz sample rate
+            * `wav_24000` - WAV with 24kHz sample rate
+            * `wav_22050` - WAV with 22.05kHz sample rate
+            * `wav_16000` - WAV with 16kHz sample rate
+
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -130,12 +167,19 @@ class TextToSpeechClient:
             prompt_audio="string",
             language_code="string",
             seed=1,
+            output_format="string",
         )
         """
         with self._client_wrapper.httpx_client.stream(
             "v1/text-to-speech/from-prompt",
             method="POST",
-            json={"text": text, "prompt_audio": prompt_audio, "language_code": language_code, "seed": seed},
+            json={
+                "text": text,
+                "prompt_audio": prompt_audio,
+                "language_code": language_code,
+                "seed": seed,
+                "output_format": output_format,
+            },
             request_options=request_options,
             omit=OMIT,
         ) as _response:
@@ -162,6 +206,7 @@ class AsyncTextToSpeechClient:
         voice: str,
         language_code: typing.Optional[str] = OMIT,
         seed: typing.Optional[int] = OMIT,
+        output_format: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None
     ) -> typing.AsyncIterator[bytes]:
         """
@@ -180,6 +225,20 @@ class AsyncTextToSpeechClient:
 
         seed : typing.Optional[int]
             Assuming all other properties didn't change, a fixed seed should always generate the exact same audio file.
+
+        output_format : typing.Optional[str]
+            Output audio format. Must be one of the following:
+            * `mp3_44100_192` - MP3 with 44.1kHz sample rate at 192kbps
+            * `mp3_44100_128` - MP3 with 44.1kHz sample rate at 128kbps
+            * `mp3_44100_96` - MP3 with 44.1kHz sample rate at 96kbps
+            * `mp3_44100_64` - MP3 with 44.1kHz sample rate at 64kbps
+            * `mp3_44100_32` - MP3 with 44.1kHz sample rate at 32kbps
+            * `mp3_22050_32` - MP3 with 22.05kHz sample rate at 32kbps
+            * `wav_44100` - WAV with 44.1kHz sample rate
+            * `wav_24000` - WAV with 24kHz sample rate
+            * `wav_22050` - WAV with 22.05kHz sample rate
+            * `wav_16000` - WAV with 16kHz sample rate
+
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -201,12 +260,19 @@ class AsyncTextToSpeechClient:
             voice="string",
             language_code="string",
             seed=1,
+            output_format="string",
         )
         """
         async with self._client_wrapper.httpx_client.stream(
             "v1/text-to-speech",
             method="POST",
-            json={"text": text, "voice": voice, "language_code": language_code, "seed": seed},
+            json={
+                "text": text,
+                "voice": voice,
+                "language_code": language_code,
+                "seed": seed,
+                "output_format": output_format,
+            },
             request_options=request_options,
             omit=OMIT,
         ) as _response:
@@ -228,6 +294,7 @@ class AsyncTextToSpeechClient:
         prompt_audio: str,
         language_code: typing.Optional[str] = OMIT,
         seed: typing.Optional[int] = OMIT,
+        output_format: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None
     ) -> typing.AsyncIterator[bytes]:
         """
@@ -250,6 +317,20 @@ class AsyncTextToSpeechClient:
         seed : typing.Optional[int]
             Assuming all other properties didn't change, a fixed seed should always generate the exact same audio file.
 
+        output_format : typing.Optional[str]
+            Output audio format. Must be one of the following:
+            * `mp3_44100_192` - MP3 with 44.1kHz sample rate at 192kbps
+            * `mp3_44100_128` - MP3 with 44.1kHz sample rate at 128kbps
+            * `mp3_44100_96` - MP3 with 44.1kHz sample rate at 96kbps
+            * `mp3_44100_64` - MP3 with 44.1kHz sample rate at 64kbps
+            * `mp3_44100_32` - MP3 with 44.1kHz sample rate at 32kbps
+            * `mp3_22050_32` - MP3 with 22.05kHz sample rate at 32kbps
+            * `wav_44100` - WAV with 44.1kHz sample rate
+            * `wav_24000` - WAV with 24kHz sample rate
+            * `wav_22050` - WAV with 22.05kHz sample rate
+            * `wav_16000` - WAV with 16kHz sample rate
+
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -270,12 +351,19 @@ class AsyncTextToSpeechClient:
             prompt_audio="string",
             language_code="string",
             seed=1,
+            output_format="string",
         )
         """
         async with self._client_wrapper.httpx_client.stream(
             "v1/text-to-speech/from-prompt",
             method="POST",
-            json={"text": text, "prompt_audio": prompt_audio, "language_code": language_code, "seed": seed},
+            json={
+                "text": text,
+                "prompt_audio": prompt_audio,
+                "language_code": language_code,
+                "seed": seed,
+                "output_format": output_format,
+            },
             request_options=request_options,
             omit=OMIT,
         ) as _response:
